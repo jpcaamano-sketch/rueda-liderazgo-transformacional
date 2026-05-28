@@ -125,10 +125,31 @@ nombre = participante["nombre"]
 st.markdown("""
 <style>
   .block-container { max-width: 1100px !important; padding-top: 1.2rem !important; }
+
+  /* Texto general sobre fondo púrpura */
+  .stApp p, .stApp label, .stApp span,
+  .stApp [data-testid="stMarkdownContainer"] p { color: rgba(255,255,255,0.88) !important; }
+
+  /* Spinner */
+  .stSpinner p { color: rgba(255,255,255,0.75) !important; }
+
+  /* Mensajes de error / éxito / info */
+  .stAlert p { color: #1a1a2e !important; }
+
+  /* Encabezado de tabla */
   .th-cell {
-    background: #FF6B4E; color: #fff; font-weight: 700; font-size: 13px;
+    background: #FF6B4E; color: #fff !important; font-weight: 700; font-size: 13px;
     padding: 10px 12px; border-radius: 0;
   }
+
+  /* Filas de descripción */
+  .fila-desc {
+    padding: 10px 10px; font-size: 15px;
+    color: rgba(255,255,255,0.88) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.6;
+  }
+
+  /* Inputs numéricos */
   div[data-testid="stNumberInput"] input {
     text-align: center !important;
     font-weight: 700 !important;
@@ -137,16 +158,17 @@ st.markdown("""
     color: #1a1a2e !important;
     border: 1px solid rgba(255,255,255,0.3) !important;
   }
-  .fila-desc {
-    padding: 10px 10px; font-size: 15px; color: rgba(255,255,255,0.88);
-    border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.6;
-  }
+
+  /* Alineación vertical descripción ↔ input */
   [data-testid="stForm"] [data-testid="stColumn"] > div {
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     height: 100% !important;
   }
+
+  /* Título "Resumen de tus puntajes" */
+  .stApp h3 { color: #DCFE77 !important; }
 </style>
 """, unsafe_allow_html=True)
 
