@@ -2,7 +2,7 @@ import smtplib
 from email.mime.multipart   import MIMEMultipart
 from email.mime.text        import MIMEText
 from email.mime.application import MIMEApplication
-from core.config import SMTP_SERVER, SMTP_PORT, SMTP_USER, SMTP_PASSWORD
+from core.config import SMTP_SERVER, SMTP_PORT, SMTP_USER, _get as _get_config
 
 
 def _send(to: str, subject: str, html: str, pdf_bytes: bytes = None):
@@ -24,7 +24,7 @@ def _send(to: str, subject: str, html: str, pdf_bytes: bytes = None):
     with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as s:
         s.ehlo()
         s.starttls()
-        s.login(SMTP_USER, SMTP_PASSWORD)
+        s.login(SMTP_USER, _get_config("SMTP_PASSWORD"))
         s.sendmail(SMTP_USER, to, msg.as_string())
 
 

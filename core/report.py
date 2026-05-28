@@ -28,10 +28,12 @@ from reportlab.platypus import (
     Table, TableStyle, HRFlowable,
 )
 
-from core.config import GOOGLE_API_KEY
 from core.dimensions import DIMENSIONES
 
-_gemini = genai.Client(api_key=GOOGLE_API_KEY)
+
+def _get_gemini():
+    from core.config import _get
+    return genai.Client(api_key=_get("GOOGLE_API_KEY"))
 
 
 # ─── Gráfico de barras horizontales ──────────────────────────────────────
@@ -204,7 +206,7 @@ Responde ÚNICAMENTE con un JSON válido con esta estructura exacta (sin markdow
   ]
 }}"""
 
-    response = _gemini.models.generate_content(
+    response = _get_gemini().models.generate_content(
         model="gemini-2.5-flash",
         contents=prompt,
     )
