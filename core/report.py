@@ -30,10 +30,15 @@ from reportlab.platypus import (
 
 from core.dimensions import DIMENSIONES
 
+_gemini_client = None
+
 
 def _get_gemini():
-    from core.config import _get
-    return genai.Client(api_key=_get("GOOGLE_API_KEY"))
+    global _gemini_client
+    if _gemini_client is None:
+        from core.config import _get
+        _gemini_client = genai.Client(api_key=_get("GOOGLE_API_KEY"))
+    return _gemini_client
 
 
 # ─── Gráfico de barras horizontales ──────────────────────────────────────
